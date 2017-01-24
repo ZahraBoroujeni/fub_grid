@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<launch>
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find fub_grid)/cfg/grid.rviz" required="true"/>
+    <node pkg="fub_grid" type="fub_grid_node" name="fub_grid_node" output="screen">
+    </node>
+</launch>
+
