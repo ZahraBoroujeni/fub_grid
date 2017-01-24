@@ -81,29 +81,28 @@ int main(int argc, char **argv) {
 	createCostMap({0,0}, {4.50,4.50}, 0.3);
 	
 	// example path
-	grid->setCost(5, 2, FREE);
-	grid->setCost(5, 3, FREE);
-	grid->setCost(5, 4, FREE);
-	grid->setCost(4, 4, FREE);
+
 	grid->setCost(5, 5, OCCUPIED);
-	grid->setCost(4, 5, FREE);
-	grid->setCost(4, 6, FREE);
-	grid->setCost(5, 6, FREE);
-	grid->setCost(5, 7, FREE);
-	grid->setCost(5, 8, FREE);
-	grid->setCost(5, 9, FREE);
-	grid->setCost(5, 10, FREE);
-	grid->setCost(5, 11, FREE);
-	grid->setCost(5, 12, FREE);
+
 	
 	publishGrid();
 	
 	createMarkers();
-
-	ros::Rate r(1);
+	int i=2;
+	ros::Rate r(2);
 	while(ros::ok()) {
+
+		if (i<13)
+		{
+			if (i!=5)
+				grid->setCost(5, i, FREE);
+			publishGrid();
+			i++;
+		}
+		
 		marker_pub.publish(points);
 		ros::spinOnce();
+		r.sleep();
 	}
 
 
